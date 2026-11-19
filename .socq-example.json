@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "templateVersion": "2.0.0",
+  "kind": "platform",
+  "platform": "google-maps",
+  "endpointCount": 3,
+  "endpoints": [
+    "google-maps/search",
+    "google-maps/place-details",
+    "google-maps/reviews"
+  ],
+  "landingPage": "https://socq.ai/apis/google-maps",
+  "docsPage": "https://docs.socq.ai/api-manual/google-maps/overview",
+  "generatedFrom": "SocQAPI/socq-example-template"
+}

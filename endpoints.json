@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "platform": "google-maps",
+  "platformName": "Google Maps",
+  "baseUrl": "https://api.socq.ai",
+  "creditUsd": 0.005,
+  "endpoints": [
+    {
+      "publicId": "google-maps/search",
+      "name": "Google Maps Search API",
+      "description": "Search public Google Maps places by query and location, returning normalized place identity, contact details, ratings, addresses, and geographic coordinates when available.",
+      "method": "POST",
+      "path": "/v1/google-maps/search",
+      "payload": "payloads/search.json",
+      "launchedAt": "2026-08-14",
+      "price": "0.15 credits ($0.00075) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.15,
+        "estimateResultCount": 100,
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/google-maps/search",
+      "landingUrl": "https://socq.ai/apis/google-maps/search",
+      "required": [
+        "location",
+        "query"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "country": {
+            "type": "string",
+            "minLength": 1
+          },
+          "latitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "location": {
+            "type": "string",
+            "minLength": 1
+          },
+          "longitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Search query."
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2000,
+            "default": 100
+          },
+          "zoom_level": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 21
+          }
+        },
+        "required": [
+          "location",
+          "query"
+        ]
+      }
+    },
+    {
+      "publicId": "google-maps/place-details",
+      "name": "Google Maps Place Details API",
+      "description": "Collect details for known public Google Maps URLs, returning normalized place identity, category, address, contact, rating, review-count, website, and geographic fields.",
+      "method": "POST",
+      "path": "/v1/google-maps/place-details",
+      "payload": "payloads/place-details.json",
+      "launchedAt": "2026-08-14",
+      "price": "0.15 credits ($0.00075) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.15,
+        "estimateInputField": "urls",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/google-maps/place-details",
+      "landingUrl": "https://socq.ai/apis/google-maps/place-details",
+      "required": [
+        "urls"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "A non-empty list of references whose parsed hostname is google.com, goo.gl, or a subdomain of either host. Any scheme is accepted when an authority and hostname are present; protocol-relative references are also accepted, and no specific path is required."
+          }
+        },
+        "required": [
+          "urls"
+        ]
+      }
+    },
+    {
+      "publicId": "google-maps/reviews",
+      "name": "Google Maps Reviews API",
+      "description": "Collect public reviews from known Google Maps URLs with normalized text, reviewer references, ratings, source links, timestamps, place references, and available media.",
+      "method": "POST",
+      "path": "/v1/google-maps/reviews",
+      "payload": "payloads/reviews.json",
+      "launchedAt": "2026-08-15",
+      "price": "0.15 credits ($0.00075) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.15,
+        "estimateResultCount": 100,
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/google-maps/reviews",
+      "landingUrl": "https://socq.ai/apis/google-maps/reviews",
+      "required": [
+        "urls"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "days_limit": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2000,
+            "default": 100
+          },
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "A non-empty list of references whose parsed hostname is google.com, goo.gl, or a subdomain of either host. Any scheme is accepted when an authority and hostname are present; protocol-relative references are also accepted, and no specific path is required."
+          }
+        },
+        "required": [
+          "urls"
+        ]
+      }
+    }
+  ]
+}

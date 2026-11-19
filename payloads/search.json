@@ -1,0 +1,6 @@
+{
+  "query": "coffee",
+  "location": "New York, NY",
+  "country": "US",
+  "results_limit": 3
+}
